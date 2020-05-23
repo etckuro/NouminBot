@@ -1,8 +1,9 @@
 #discordのライブラリをインポート
 import discord
 #自分のトークンにしてね
-TOKEN = 'NzA4MjMyMzY4NjE5NjUxMDgz.XrZoGQ.50hCZTgyEiZzGXVg83o9CVFhHPg'
+TOKEN = ''
 
+def payoff(message):
 # 接続に必要なオブジェクトを作る
 client = discord.Client()
 
@@ -14,11 +15,11 @@ async def on_ready():
 #メッセージを受け取ったとき
 @client.event
 async def on_message(message):
-    # Botだったらは無視
+    # Botだったら無視
     if message.author.bot:
         return
-    if message.content == '/hello':
-        await message.channel.send('test')
+    if message.content.startswith('test'):
+        await message.channel.send('hello')
 
 #BOTの起動
 client.run(TOKEN)
