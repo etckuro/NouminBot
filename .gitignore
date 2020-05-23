@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/mybot.bak
+/quick-doodad-277506-919b78e713ca.json
+/spreadtest.py
+/cogs/mycog.bak
