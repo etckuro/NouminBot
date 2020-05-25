@@ -27,8 +27,14 @@ class MyCog(commands.Cog):
             for idx in playerInfo.index:
                 result += idx + '： ' + playerInfo.at[idx] + '\n'
         else:
-            result = name + '...? 知らねっす！'
+            result = name + '...? 知らない子ですね...'
         await ctx.send(result)
+
+    @commands.command()
+    async def reload(self, ctx, name):        
+        result = ''
+        self.playerList = getPlayerList()   # プレイヤーリストを読み込む
+        await ctx.send('プレイヤーリストを再読み込みしましたー！')
 
     #### メインとなるroleコマンド
     ###@commands.group()

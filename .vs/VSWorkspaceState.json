@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\cogs"
   ],
-  "SelectedNode": "\\spreadtest.py",
+  "SelectedNode": "\\cogs\\mycog.py",
   "PreviewInSolutionExplorer": true
 }
