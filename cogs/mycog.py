@@ -5,6 +5,8 @@ import gspread # googleスプレッドシート用
 from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 
+import random
+
 #google スプレッドシートのKEY
 SPREADSHEET_KEY = ''
 
@@ -32,9 +34,39 @@ class MyCog(commands.Cog):
 
     @commands.command()
     async def reload(self, ctx, name):        
-        result = ''
+        result = 'プレイヤーリストを再読み込みしましたー！'
         self.playerList = getPlayerList()   # プレイヤーリストを読み込む
-        await ctx.send('プレイヤーリストを再読み込みしましたー！')
+        await ctx.send(result)
+
+    @commands.command()
+    async def rate(self, ctx, strrate):        
+        rate = int(float(strrate) * 10)
+        result = ''
+        successcount = 0
+        failcount = 0
+        maxfailcount = 0
+        totalsuccesscount = 0
+        for i in range(0, 100):
+            for j in range(0, 10):
+                if random.randrange(1000) in random.sample(range(1000), k=rate):
+                    result += '@'
+                    if maxfailcount < failcount:
+                        maxfailcount = failcount
+                    failcount = 0
+                    successcount += 1
+                    totalsuccesscount += 1
+                else:
+                    result += '+'
+                    failcount += 1
+            #print('%s %s/30' % (result, str(successcount).rjust(3,' ')))
+            #result = ''
+            successcount = 0
+        #print('最大連続失敗回数： %d 回' % maxfailcount)  
+        #print('成功回数： %d 回' % totalsuccesscount)  
+        result = '最大連続失敗回数： ' + str(maxfailcount) + ' 回\n' + result
+        result = '成功回数： ' + str(totalsuccesscount) + ' 回\n' + result
+        result = '確率 ' + str(strrate) + ' % を1000回実行すると…\n' + result
+        await ctx.send(result)
 
     #### メインとなるroleコマンド
     ###@commands.group()
